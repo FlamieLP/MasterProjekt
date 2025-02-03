@@ -1,0 +1,15 @@
+Master Projekt: Modi
+
+1. Gaze Selection + Hand Support
+	- Gaze Primary
+	- Pre-Select -> Highlight selectable Objects
+	- Move Hand to adjust selection
+	- select Object
+
+2. Gaze + Hand Selection (Weighted Ray Intersection)
+	- Two Rays from Eye and Hand
+	- Intersection/Weighted center/etc
+	- Select Object
+
+3. Scoped Hand Ray
+	- Ray from eye to hand for selection
