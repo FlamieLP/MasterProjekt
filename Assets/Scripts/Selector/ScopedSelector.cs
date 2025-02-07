@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScopedSelector : RaySelector
+public class ScopedSelector : Selector
 {
-    [SerializeField] private Transform scope;
+    [SerializeField] private Transform origin, scope;
 
     public override Ray GetRay()
     {

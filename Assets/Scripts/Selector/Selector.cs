@@ -1,30 +1,12 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaySelector : Selector
+public abstract class Selector : MonoBehaviour
 {
-    [SerializeField]
-    protected Transform origin;
-
     [SerializeField] private LayerMask selectables, blocker;
+    [SerializeField] private bool isRayVisible = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        if (origin == null)
-        {
-            origin = transform;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
-    }
-
-    public override List<Selection> GetSelectionList(float radius, float distance)
+    public virtual List<Selection> GetSelectionList(float radius, float distance)
     {
         var ray = GetRay();
         var hits = Physics.SphereCastAll(ray, radius, distance, selectables | blocker);
@@ -41,7 +23,7 @@ public class RaySelector : Selector
         return selection;
     }
 
-    public override bool TryGetBestSelection(float radius, float distance, out Selection bestSelection)
+    public virtual bool TryGetBestSelection(float radius, float distance, out Selection bestSelection)
     {
         var selectionList = GetSelectionList(radius, distance);
         bestSelection = null;
@@ -59,7 +41,7 @@ public class RaySelector : Selector
         return bestSelection != null;
     }
     
-    public override bool TryGetBestSelection(List<Selection> selectionList, out Selection bestSelection)
+    public virtual bool TryGetBestSelection(List<Selection> selectionList, out Selection bestSelection)
     {
         bestSelection = null;
         
@@ -76,24 +58,40 @@ public class RaySelector : Selector
         return bestSelection != null;
     }
 
-    public override float GetAccuracy(Vector3 point)
+    public virtual float GetAccuracy(Vector3 point)
     {
         var ray = GetRay();
         var dir = (point - GetRay().origin).normalized;
         var accuracy = Vector3.Dot(ray.direction, dir);
         return accuracy;
     }
-    
-    public override Ray GetRay()
-    {
-        var start = origin.position;
-        var dir = origin.forward;
-        return new Ray(start, dir);
-    }
+
+    public abstract Ray GetRay();
 
     public void OnDrawGizmos()
     {
+        if (!isRayVisible) return;
         Gizmos.color = Color.red;
         Gizmos.DrawRay(GetRay().origin, GetRay().direction * 10);
+    }
+    
+    [System.Serializable]
+    public class Selection
+    {
+        public Selectable selectable;
+        public Vector3 point;
+        public float accuracy;
+
+        public Selection(Selectable selectable, Vector3 point, float accuracy)
+        {   
+            this.selectable = selectable;
+            this.point = point; 
+            this.accuracy = accuracy;
+        }
+
+        public override string ToString()
+        {
+            return $"Selectable: {selectable}, Point: {point}, Accuracy: {accuracy}";
+        }
     }
 }
