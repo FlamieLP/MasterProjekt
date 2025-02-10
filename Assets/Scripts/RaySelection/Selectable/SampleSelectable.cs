@@ -7,6 +7,12 @@ namespace RaySelection.Selectable
         public Renderer rend;
         private bool selected = false;
         private bool hovered = false;
+        
+        [Header("Color")]
+        [SerializeField] private Color defaultColor = Color.white;
+        [SerializeField] private Color hoverColor = Color.yellow;
+        [SerializeField] private Color selectCover = Color.red;
+        [SerializeField] private Color hoverSelectCover = new Color(1,.5f,0,1);
     
         public override void Select()
         {
@@ -36,19 +42,19 @@ namespace RaySelection.Selectable
         {
             if (hovered && selected)
             {
-                rend.material.color = new Color(1,.5f,0,1);
+                rend.material.color = hoverSelectCover;
             }
             else if (hovered)
             {
-                rend.material.color = Color.yellow;
+                rend.material.color = hoverColor;
             }
             else if (selected)
             {
-                rend.material.color = Color.red;
+                rend.material.color = selectCover;
             }
             else
             {
-                rend.material.color = Color.white;
+                rend.material.color = defaultColor;
             }
         }
     }

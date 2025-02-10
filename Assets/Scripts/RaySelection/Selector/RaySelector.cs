@@ -6,35 +6,48 @@ namespace RaySelection.Selector
 {
     public abstract class RaySelector : MonoBehaviour
     {
-        private const int SPEHERECAST_STEPS = 3;
+        private const float MAX_SPHERECAST_RADIUS = 3;
     
         [SerializeField] private LayerMask selectables, blocker;
         [SerializeField] private bool isRayVisible = false;
 
-        protected IEnumerable<Selection> GetRaycastSelections(float radius, float distance, Ray ray)
+        protected IEnumerable<Selection> GetRaycastSelections(float radius, float distance, Ray ray, float offset)
         {
-            var hits = Physics.SphereCastAll(ray, radius, distance, selectables | blocker);
+            var offsetRay = new Ray(ray.origin + ray.direction * offset, ray.direction);
+            var hits = Physics.SphereCastAll(offsetRay, radius, distance, selectables);
         
             List<Selection> selection = new List<Selection>();
             foreach (var hit in hits)
             {
                 if (hit.transform.TryGetComponent(out Selectable.Selectable selectable))
                 {
-                    selection.Add(new Selection(selectable, hit.point, GetAccuracy(hit.point)));
+                    var confirmationRayToPoint = new Ray(ray.origin, (hit.point - ray.origin).normalized);
+                    var confirmationRayToCenter = new Ray(ray.origin, (hit.transform.position - ray.origin).normalized);
+                    var dist = (hit.point - ray.origin).magnitude;
+                    var isBlockedToPoint = hit.point == Vector3.zero || !Physics.Raycast(confirmationRayToPoint, dist, blocker);
+                    var isBlockedToCenter = !Physics.Raycast(confirmationRayToCenter, dist, blocker);
+                    if (isBlockedToCenter || isBlockedToPoint)
+                    {
+                        selection.Add(new Selection(selectable, hit.point, GetAccuracy(hit.point)));
+                    }
                 }
             }
             return selection;
         }
-    
-        public virtual IEnumerable<Selection> GetSelectionList(float radius, float distance)
+        
+        public virtual IEnumerable<Selection> GetSelectionList(float angle, float distance)
         {
             var ray = GetRay();
+            var radius = 0.1f;
+            var dist = distance;
             HashSet<Selection> selection = new HashSet<Selection>();
-            for (int n = 1; n <= SPEHERECAST_STEPS; n++)
+            while (radius <= MAX_SPHERECAST_RADIUS && dist > 0)
             {
-                var radiusFrac = radius * (n / (float)SPEHERECAST_STEPS); 
-                var selections = GetRaycastSelections(radiusFrac, distance, ray);
+                var offset = radius/Mathf.Tan(angle * Mathf.Deg2Rad);
+                dist = distance - offset;
+                var selections = GetRaycastSelections(radius, dist, ray, offset);
                 selection.AddRange(selections);
+                radius *= 2;
             }
             return selection;
         }

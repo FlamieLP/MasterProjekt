@@ -17,7 +17,7 @@ namespace RaySelection.Methods
         [SerializeField] private InputActionReference preSelect;
         [SerializeField] private InputActionReference select;
 
-        [Header("Settings")] [SerializeField] private float radius;
+        [Header("Settings")] [SerializeField] private float angle;
         [SerializeField] private float distance, objectSpacing = 0.1f;
     
         [SerializeField] private List<Selection> preSelections = new List<Selection>();
@@ -45,7 +45,7 @@ namespace RaySelection.Methods
         {
             var ray = gazeSelector.GetRay();
             startIndex = 0;
-            preSelections = gazeSelector.GetSelectionList(radius, distance).OrderBy(selection =>
+            preSelections = gazeSelector.GetSelectionList(angle, distance).OrderBy(selection =>
             {
                 var right = Vector3.Cross(Vector3.up, ray.direction ).normalized;
                 var dir = selection.selectable.transform.position - ray.origin;

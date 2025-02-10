@@ -16,7 +16,7 @@ namespace RaySelection.Methods
         [SerializeField] private InputActionReference select;
 
         [Header("Settings")] 
-        [SerializeField] private float radius;
+        [SerializeField] private float angle;
         [SerializeField] private float distance;
         [SerializeField] 
         [Range(0,1)] 
@@ -45,8 +45,8 @@ namespace RaySelection.Methods
     
         private void OnSelection(Action<Selection> action)
         {
-            var gazeSelection = gazeSelector.GetSelectionList(radius, distance);
-            var handSelection = handSelector.GetSelectionList(radius, distance);
+            var gazeSelection = gazeSelector.GetSelectionList(angle, distance);
+            var handSelection = handSelector.GetSelectionList(angle, distance);
             gazeSelection = gazeSelection.Select(selection => new Selection(
                 selection.selectable, 
                 selection.point,

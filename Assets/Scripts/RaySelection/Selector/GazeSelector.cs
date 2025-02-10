@@ -6,6 +6,9 @@ namespace RaySelection.Selector
 {
     public class GazeSelector : RaySelector
     {
+        [Header("References")]
+        [SerializeField] private Transform xrOrigin;
+        
         [Header("OpenXR Input Actions")]
         [SerializeField] private InputActionReference position;
         [SerializeField] private InputActionReference rotation;
@@ -19,7 +22,7 @@ namespace RaySelection.Selector
 
         public override Ray GetRay()
         {
-            return new Ray(position.action.ReadValue<Vector3>(), rotation.action.ReadValue<Quaternion>() * Vector3.forward);
+            return new Ray(xrOrigin.position + position.action.ReadValue<Vector3>(), rotation.action.ReadValue<Quaternion>() * Vector3.forward);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace RaySelection.Methods
         [SerializeField] private InputActionReference select;
 
         [Header("Settings")] 
-        [SerializeField] private float radius;
+        [SerializeField] private float angle;
         [SerializeField] private float distance;
     
         void Start()
@@ -37,7 +37,7 @@ namespace RaySelection.Methods
     
         private void OnSelection(Action<Selection> action)
         {
-            if (selector.TryGetBestSelection(radius, distance, out var bestSelection))
+            if (selector.TryGetBestSelection(angle, distance, out var bestSelection))
             {
                 action(bestSelection);
             }
