@@ -1,0 +1,33 @@
+{
+  "name": "com.gmoots.rayselection",
+  "version": "1.0.0",
+  "displayName": "Ray Selection",
+  "description": "Provides basic components to enable ray selection of GameObjects. This package can provide selection functionality for interaction systems such as gaze, hand-tracking or controller.",
+  "unity": "6000.0",
+  "documentationUrl": "https://example.com/",
+  "changelogUrl": "https://example.com/changelog.html",
+  "licensesUrl": "https://example.com/licensing.html",
+  "dependencies": {
+    "com.unity.inputsystem": "1.8.1",
+    "com.unity.xr.openxr": "1.14.0",
+    "com.unity.xr.hands": "1.5.0",
+    "com.unity.xr.interaction.toolkit": "3.0.7"
+  },
+  "keywords": [
+    "XR",
+    "VR",
+    "toolkit",
+    "interaction",
+    "selection"
+  ],
+  "author": {
+    "name": "GMOOTS"
+  },
+  "samples": [
+    {
+      "displayName": "XR Scenes",
+      "description": "Sample scenes containing test ranges for all provided methods of ray selection.",
+      "path": "Samples~/TestRanges"
+    }
+  ]
+}
