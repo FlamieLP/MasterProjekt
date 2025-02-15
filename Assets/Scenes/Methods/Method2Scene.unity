@@ -119,6 +119,31 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &2725436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1670256624, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 1579058991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2725443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2725436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91b14c61b801a645aa085f78f6a4d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectables:
+    serializedVersion: 2
+    m_Bits: 128
+  blocker:
+    serializedVersion: 2
+    m_Bits: 64
+  isRayVisible: 0
+  origin: {fileID: 613990609}
 --- !u!1 &9374614
 GameObject:
   m_ObjectHideFlags: 0
@@ -5945,26 +5970,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 1579058991}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1538984965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1538984958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b2ef48cba205a84f86f28f32a1175b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gazeSelector: {fileID: 1579059000}
-  hand: {fileID: 613990609}
-  preSelect: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  select: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  angle: 30
-  distance: 10
-  objectSpacing: 0.1
-  preSelections: []
 --- !u!1001 &1579058991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6037,13 +6042,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1538984965}
+      addedObject: {fileID: 1579059001}
     - targetCorrespondingSourceObject: {fileID: 1767192433, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1579058995}
     - targetCorrespondingSourceObject: {fileID: 1767192433, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1579059000}
+    - targetCorrespondingSourceObject: {fileID: 1670256624, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2725443}
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
 --- !u!4 &1579058992 stripped
 Transform:
@@ -6131,6 +6139,24 @@ MonoBehaviour:
   xrOrigin: {fileID: 1579058994}
   position: {fileID: 3220680263695665919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   rotation: {fileID: -5930349909990434036, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &1579059001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538984958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad0be3054971464081bc104420cb4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gazeSelector: {fileID: 1579059000}
+  handSelector: {fileID: 2725443}
+  select: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  angle: 20
+  distance: 10
+  handWeight: 0.4
 --- !u!1 &1595162770
 GameObject:
   m_ObjectHideFlags: 0

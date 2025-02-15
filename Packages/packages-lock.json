@@ -1,5 +1,17 @@
 {
   "dependencies": {
+    "com.gmoots.rayselection": {
+      "version": "https://github.com/FlamieLP/MasterProjekt.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.inputsystem": "1.8.1",
+        "com.unity.xr.openxr": "1.14.0",
+        "com.unity.xr.hands": "1.5.0",
+        "com.unity.xr.interaction.toolkit": "3.0.7"
+      },
+      "hash": "d13344d11499aa64e0c411a5f6ba0c80ab22390b"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.5",
       "depth": 0,
