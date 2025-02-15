@@ -1,3 +1,4 @@
+using RaySelection.Selectable;
 using UnityEngine;
 
 namespace RaySelection.Selector
@@ -5,11 +6,11 @@ namespace RaySelection.Selector
     [System.Serializable]
     public class Selection
     {
-        public readonly Selectable.Selectable selectable;
+        public readonly ISelectable selectable;
         public readonly Vector3 point;
         public readonly float accuracy;
 
-        public Selection(Selectable.Selectable selectable, Vector3 point, float accuracy)
+        public Selection(ISelectable selectable, Vector3 point, float accuracy)
         {   
             this.selectable = selectable;
             this.point = point; 

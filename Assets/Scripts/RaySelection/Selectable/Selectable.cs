@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RaySelection.Selectable
 {
-    public abstract class Selectable : MonoBehaviour
+    public abstract class Selectable : MonoBehaviour, ISelectable
     {
         public virtual int GetIdentifier()
         {

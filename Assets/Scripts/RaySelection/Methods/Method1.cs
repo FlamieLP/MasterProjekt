@@ -48,7 +48,7 @@ namespace RaySelection.Methods
             preSelections = gazeSelector.GetSelectionList(angle, distance).OrderBy(selection =>
             {
                 var right = Vector3.Cross(Vector3.up, ray.direction ).normalized;
-                var dir = selection.selectable.transform.position - ray.origin;
+                var dir = selection.point - ray.origin;
                 var offset = Vector3.Dot(dir, right);
                 if (offset < 0)
                 {

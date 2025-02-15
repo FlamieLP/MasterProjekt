@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RaySelection.Selectable;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace RaySelection.Selector
             List<Selection> selection = new List<Selection>();
             foreach (var hit in hits)
             {
-                if (hit.transform.TryGetComponent(out Selectable.Selectable selectable))
+                if (hit.transform.TryGetComponent(out ISelectable selectable))
                 {
                     var confirmationRayToPoint = new Ray(ray.origin, (hit.point - ray.origin).normalized);
                     var confirmationRayToCenter = new Ray(ray.origin, (hit.transform.position - ray.origin).normalized);
