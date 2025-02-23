@@ -8,10 +8,10 @@ namespace RaySelection.Selector
     {
         private const float MAX_SPHERECAST_RADIUS = 3;
     
-        [SerializeField] private LayerMask selectables, blocker;
+        [SerializeField] protected LayerMask selectables, blocker;
         [SerializeField] private bool isRayVisible = false;
 
-        protected IEnumerable<Selection> GetRaycastSelections(float radius, float distance, Ray ray, float offset)
+        protected IEnumerable<Selection> GetConecastSelections(float radius, float distance, Ray ray, float offset)
         {
             var offsetRay = new Ray(ray.origin + ray.direction * offset, ray.direction);
             var hits = Physics.SphereCastAll(offsetRay, radius, distance, selectables);
@@ -45,7 +45,7 @@ namespace RaySelection.Selector
             {
                 var offset = radius/Mathf.Tan(angle * Mathf.Deg2Rad);
                 dist = distance - offset;
-                var selections = GetRaycastSelections(radius, dist, ray, offset);
+                var selections = GetConecastSelections(radius, dist, ray, offset);
                 selection.UnionWith(selections);
                 radius *= 2;
             }

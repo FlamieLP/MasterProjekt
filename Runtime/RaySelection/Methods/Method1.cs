@@ -10,7 +10,7 @@ namespace RaySelection.Methods
     public class Method1 : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private RaySelector gazeSelector;
+        [SerializeField] private GazeSelector gazeSelector;
         [SerializeField] private Transform hand;
     
         [Header("Inputs")]
