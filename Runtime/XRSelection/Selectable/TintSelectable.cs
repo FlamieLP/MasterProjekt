@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RaySelection.Selectable
+namespace XRSelection.Selectable
 {
     public class TintSelectable : Selectable
     {

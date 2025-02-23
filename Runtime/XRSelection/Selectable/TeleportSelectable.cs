@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace RaySelection.Selectable
+namespace XRSelection.Selectable
 {
     public class TeleportSelectable : TintSelectable
     {

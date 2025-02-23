@@ -1,7 +1,7 @@
 {
-  "name": "com.gmoots.rayselection",
+  "name": "com.gmoots.xrselection",
   "version": "1.0.1",
-  "displayName": "Ray Selection",
+  "displayName": "XR Selection",
   "description": "Provides basic components to enable ray selection of GameObjects. This package can provide selection functionality for interaction systems such as gaze, hand-tracking or controller.",
   "unity": "6000.0",
   "dependencies": {
