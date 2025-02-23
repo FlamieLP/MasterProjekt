@@ -5,7 +5,9 @@
   "description": "Provides basic components to enable ray selection of GameObjects. This package can provide selection functionality for interaction systems such as gaze, hand-tracking or controller.",
   "unity": "6000.0",
   "dependencies": {
-    "com.unity.inputsystem": "1.8.1"
+    "com.unity.inputsystem": "1.8.1",
+    "com.unity.xr.openxr": "1.14.0",
+    "com.unity.xr.hands": "1.5.0"
   },
   "keywords": [
     "XR",
@@ -16,5 +18,11 @@
   "author": {
     "name": "GMOOTS"
   },
-  "samples": []
+  "samples": [
+    {
+      "displayName": "XR Scenes",
+      "description": "Sample scenes containing test ranges for all provided methods of ray selection.",
+      "path": "Samples~/TestRanges"
+    }
+  ]
 }
