@@ -4,6 +4,7 @@
   "displayName": "XR Selection",
   "description": "Provides basic components to enable ray selection of GameObjects. This package can provide selection functionality for interaction systems such as gaze, hand-tracking or controller.",
   "unity": "6000.0",
+  "documentationUrl": "https://github.com/FlamieLP/MasterProjekt/blob/main/Documentation~/Dokumentation_XR_Selection.pdf",
   "dependencies": {
     "com.unity.inputsystem": "1.8.1",
     "com.unity.xr.openxr": "1.14.0",
